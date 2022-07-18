@@ -6,14 +6,29 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
+    var webview: WKWebView!
+    
+    override func loadView() {
+        webview = WKWebView()
+        webview.navigationDelegate = self
+        view = webview
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
+        
+        let url = URL(string: "https://www.dev.to")!
+        webview.load(URLRequest(url: url))
+        webview.allowsBackForwardNavigationGestures = true
     }
 
-
+    @objc func openTapped() {
+        
+    }
 }
 
