@@ -9,17 +9,11 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController, WKNavigationDelegate {
-    var webview: WKWebView!
-    
-    override func loadView() {
-        webview = WKWebView()
-        webview.navigationDelegate = self
-        view = webview
-    }
+    @IBOutlet weak var webview: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        webview.navigationDelegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
         
         let url = URL(string: "https://www.dev.to")!
